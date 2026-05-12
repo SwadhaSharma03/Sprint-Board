@@ -97,7 +97,7 @@ const Login = () => {
             <div className="space-y-2">
               <div className="flex items-center justify-between ml-1">
                 <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Password</label>
-                <button type="button" className="text-xs text-violet-600 font-bold hover:underline">Forgot?</button>
+                {/* <button type="button" className="text-xs text-violet-600 font-bold hover:underline">Forgot?</button> */}
               </div>
               <div className="relative">
                 <input
