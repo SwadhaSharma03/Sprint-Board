@@ -79,7 +79,14 @@ const Dashboard = () => {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500 font-['Outfit',sans-serif]">
       {/* Sidebar - Desktop */}
       <aside className={`fixed left-0 top-0 h-full bg-white dark:bg-slate-900 border-r border-slate-200/60 dark:border-slate-800 hidden lg:flex flex-col z-30 transition-all duration-500 ease-in-out ${isSidebarCollapsed ? 'w-24' : 'w-72'}`}>
-        <div className="p-8 flex-1 flex flex-col overflow-hidden relative">
+        <button
+          onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+          className="absolute -right-5 top-8 w-10 h-10 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 rounded-full flex items-center justify-center shadow-xl hover:text-primary-600 hover:border-primary-600/30 transition-all z-50 group"
+        >
+          {isSidebarCollapsed ? <ChevronRight size={20} className="group-hover:scale-110 transition-transform" /> : <ChevronLeft size={20} className="group-hover:scale-110 transition-transform" />}
+        </button>
+
+        <div className={`flex-1 flex flex-col overflow-hidden relative transition-all duration-500 ${isSidebarCollapsed ? 'p-4' : 'p-8'}`}>
           <div className={`flex items-center gap-3 text-primary-600 mb-12 ${isSidebarCollapsed ? 'justify-center' : ''}`}>
             <div className="w-10 h-10 rounded-2xl bg-primary-600 text-white flex items-center justify-center shadow-lg shadow-primary-600/20">
               <Sparkles size={24} />
@@ -90,21 +97,13 @@ const Dashboard = () => {
           </div>
 
           <nav className="space-y-2">
-            <button className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl bg-primary-50 dark:bg-primary-900/20 text-primary-600 font-bold ${isSidebarCollapsed ? 'justify-center' : ''}`}>
+            <button className={`w-full flex items-center gap-4 py-3.5 rounded-2xl bg-primary-50 dark:bg-primary-900/20 text-primary-600 font-bold ${isSidebarCollapsed ? 'justify-center px-0' : 'px-4'}`}>
               <LayoutDashboard size={22} />
-              {!isSidebarCollapsed && <span>My Workspace</span>}
+              {!isSidebarCollapsed && <span>Workspace</span>}
             </button>
           </nav>
-
-          <button
-            onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-            className="absolute -right-3.5 top-11 w-7 h-7 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 rounded-full flex items-center justify-center shadow-md hover:text-primary-600 transition-colors z-40"
-          >
-            {isSidebarCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
-          </button>
         </div>
-
-        <div className="mt-auto p-6 border-t border-slate-100 dark:border-slate-800">
+        <div className={`mt-auto border-t border-slate-100 dark:border-slate-800 transition-all duration-500 ${isSidebarCollapsed ? 'p-4' : 'p-6'}`}>
           <div className={`flex items-center gap-4 mb-8 ${isSidebarCollapsed ? 'justify-center' : ''}`}>
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-100 to-indigo-100 dark:from-violet-900/30 dark:to-indigo-900/30 flex items-center justify-center text-primary-600 font-black text-lg border border-white dark:border-slate-700 shadow-sm">
               {user?.name?.[0] || 'U'}
@@ -118,10 +117,10 @@ const Dashboard = () => {
           </div>
           <button
             onClick={() => dispatch(logout())}
-            className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 font-bold transition-all ${isSidebarCollapsed ? 'justify-center' : ''}`}
+            className={`w-full flex items-center gap-4 py-3.5 rounded-2xl text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 font-bold transition-all ${isSidebarCollapsed ? 'justify-center px-0' : 'px-4'}`}
           >
             <LogOut size={22} />
-            {!isSidebarCollapsed && <span>Sign Out</span>}
+            {!isSidebarCollapsed && <span>Logout</span>}
           </button>
         </div>
       </aside>
